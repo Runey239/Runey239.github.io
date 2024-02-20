@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Launch Page</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-color: #000;
+        background-image: radial-gradient(at top, #000 0%, #04080d 100%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+    }
+    .button {
+        background-color: #ff4d4d; /* Red button */
+        color: white;
+        padding: 15px 30px;
+        font-size: 20px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        transition: opacity 0.3s ease;
+    }
+    .button:hover {
+        background-color: #e60000; /* Darker red on hover */
+    }
+    .button-icon {
+        margin-right: 10px;
+    }
+    .rocket-icon {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%) translateY(100%);
+        font-size: 200px;
+        color: #ff4d4d; /* Red color */
+        opacity: 0;
+        transition: transform 5s ease, opacity 1s ease;
+    }
+</style>
+</head>
+<body>
+
+<button class="button" onclick="launchRocket()">
+    <span class="button-icon"><span class="iconify" data-icon="noto:rocket"></span></span>
+    Launch
+</button>
+
+<span class="rocket-icon" id="rocketIcon"><span class="iconify" data-icon="mdi:rocket"></span></span>
+
+<script>
+    function launchRocket() {
+        var button = document.querySelector('.button');
+        button.style.opacity = '0'; // Hide the button
+        setTimeout(function() {
+            var rocketIcon = document.getElementById('rocketIcon');
+            rocketIcon.style.transform = 'translateX(-50%) translateY(-200%)'; // Move the rocket icon up
+            rocketIcon.style.opacity = '1'; // Show the rocket icon
+            setTimeout(function() {
+                rocketIcon.style.transform = 'translateX(-50%) translateY(100%)'; // Move the rocket icon back down
+                rocketIcon.style.opacity = '0'; // Hide the rocket icon
+                button.style.opacity = '1'; // Show the button
+            }, 5000); // Wait for 5 seconds before returning
+        }, 300);
+    }
+</script>
+
+</body>
+</html>

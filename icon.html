@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iconify Beispiele</title>
+<!-- Iconify import -->
+<script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        background-color: #343a40; /* Dark background */
+        color: #fff; /* Light text */
+        font-size: 20px; /* Larger font size */
+    }
+    .icon-container {
+        margin: 10px;
+        text-align: center;
+    }
+    .icon {
+        font-size: 60px; /* Larger icon size */
+        margin-bottom: 10px; /* Increase margin */
+        transition: color 0.3s ease; /* Smooth color transition */
+    }
+    .icon-label {
+        font-size: 18px; /* Larger label size */
+    }
+    .icon-container:hover .icon {
+        color: #007bff; /* Default blue glow color on hover */
+    }
+    .rocket-icon:hover .icon {
+        color: #FF0000; /* Red hover color for rocket icon */
+    }
+    .profile-icon:hover .icon {
+        color: #0000FF; /* Blue hover color for profile icon */
+    }
+    .empty-heart-icon:hover .icon {
+        color: #FF0000; /* Red hover color for empty heart icon */
+    }
+    .cat-icon:hover .icon {
+        color: #FFA500; /* Orange hover color for cat icon */
+    }
+    .coffee-icon:hover .icon {
+        color: #8B4513; /* Brown hover color for coffee icon */
+    }
+    .github-icon:hover .icon {
+        color: a#800080; /* Purple hover color for GitHub icon */
+    }
+    .sparkles-icon:hover .icon {
+        color: #FFFF00; /* Yellow hover color for sparkles icon */
+    }
+    #loading-popup {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+        justify-content: center;
+        align-items: center;
+    }
+    .loading-icon {
+        font-size: 100px;
+        color: #FF0000; /* Red color */
+        animation: neon-effect 1s ease infinite alternate; /* Neon effect animation */
+    }
+    @keyframes neon-effect {
+        0% {
+            text-shadow: 0 0 10px #FF0000, 0 0 20px #FF0000, 0 0 30px #FF0000, 0 0 40px #FF0000, 0 0 70px #FF0000, 0 0 80px #FF0000, 0 0 100px #FF0000, 0 0 150px #FF0000;
+        }
+        100% {
+            text-shadow: 0 0 5px #FF0000, 0 0 10px #FF0000, 0 0 15px #FF0000, 0 0 20px #FF0000, 0 0 35px #FF0000, 0 0 40px #FF0000, 0 0 50px #FF0000, 0 0 75px #FF0000;
+        }
+    }
+    a {
+        color: inherit; /* Inherit text color */
+        text-decoration: none; /* Remove underline */
+    }
+</style>
+</head>
+<body>
+
+    <div id="loading-popup">
+        <span class="iconify loading-icon" data-icon="mdi:loading"></span>
+    </div>
+    
+    <div class="icon-container rocket-icon">
+        <a href="rocket.html" onclick="showLoadingPopup()">
+            <span class="iconify icon" data-icon="emojione:rocket"></span>
+            <div class="icon-label">Rocket</div>
+        </a>
+    </div>
+    
+    <div class="icon-container profile-icon">
+        <a href="account.html" onclick="showLoadingPopup()">
+            <span class="iconify icon" data-icon="mdi:account-circle"></span>
+            <div class="icon-label">Profile</div>
+        </a>
+    </div>
+
+<div class="icon-container empty-heart-icon">
+    <a href="heart.html">
+        <span class="iconify icon" data-icon="mdi:heart-outline"></span>
+        <div class="icon-label">Empty Heart</div>
+    </a>
+</div>
+
+<div class="icon-container cat-icon">
+    <a href="cat.html">
+        <span class="iconify icon" data-icon="noto-v1:cat"></span>
+        <div class="icon-label">Cat</div>
+    </a>
+</div>
+
+<div class="icon-container coffee-icon">
+    <a href="coffee.html">
+        <span class="iconify icon" data-icon="fa-solid:coffee"></span>
+        <div class="icon-label">Coffee</div>
+    </a>
+</div>
+
+<div class="icon-container github-icon">
+    <a href="https://github.com">
+        <span class="iconify icon" data-icon="fa-brands:github"></span>
+        <div class="icon-label">GitHub</div>
+    </a>
+</div>
+
+<div class="icon-container sparkles-icon">
+    <a href="firework.html">
+        <span class="iconify icon" data-icon="twemoji:sparkles"></span>
+        <div class="icon-label">Sparkles</div>
+    </a>
+</div>
+
+<script>
+    function showLoadingPopup() {
+        document.getElementById('loading-popup').style.display = 'flex';
+        setTimeout(function() {
+            document.getElementById('loading-popup').style.display = 'none';
+        }, 8000);
+    }
+</script>
+
+</body>
+</html>

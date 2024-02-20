@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Large Cat Icon</title>
+<script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        overflow: hidden;
+        background-color: #f0f0f0;
+    }
+    #cat-container {
+        position: fixed;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        cursor: pointer;
+    }
+    #cat-icon {
+        font-size: 300px; /* Adjust size as needed */
+        color: #ffcc66; /* Cat color */
+        transition: transform 0.3s ease;
+    }
+    #dog-icon {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        font-size: 200px; /* Adjust size as needed */
+        color: #9c27b0; /* Dog color */
+        display: none;
+    }
+</style>
+</head>
+<body>
+
+<div id="cat-container">
+    <span id="cat-icon" class="iconify" data-icon="noto:cat"></span>
+</div>
+
+<span id="dog-icon" class="iconify" data-icon="mdi:dog"></span>
+
+<script>
+    var catIcon = document.getElementById('cat-icon');
+    var dogIcon = document.getElementById('dog-icon');
+
+    catIcon.addEventListener('click', function() {
+        catIcon.style.transform = 'translateX(-100vw)';
+        dogIcon.style.display = 'block';
+        setTimeout(function() {
+            dogIcon.style.right = '0';
+        }, 300);
+    });
+
+    // Optional: Make the dog follow the cat
+    document.addEventListener('mousemove', function(event) {
+        if (dogIcon.style.display === 'block') {
+            var x = event.clientX;
+            var y = event.clientY;
+            dogIcon.style.top = y + 'px';
+            dogIcon.style.left = x + 'px';
+        }
+    });
+</script>
+
+</body>
+</html>

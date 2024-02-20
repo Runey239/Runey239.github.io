@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Account Creation</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+<style>
+    body {
+        background-color: #343a40;
+        color: #fff;
+    }
+    .form-container {
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        background-color: #454d55;
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .form-control {
+        border-radius: 20px;
+        background-color: #6c757d;
+        color: #fff;
+    }
+    .btn-submit {
+        border-radius: 20px;
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+    .btn-submit:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+    }
+    .btn-icon {
+        margin-right: 10px;
+    }
+    .success .iconify {
+        color: #28a745 !important;
+    }
+    .error .iconify {
+        color: #dc3545 !important;
+    }
+</style>
+</head>
+<body>
+
+<div class="container-fluid d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="form-container col-lg-4 col-md-6 col-sm-8">
+        <h2 class="text-center mb-4">Create Your Account</h2>
+        <form onsubmit="showLoadingIcon(); return false;">
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><span class="iconify" data-icon="mdi:account"></span></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Username" required oninput="validateInput(this)">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><span class="iconify" data-icon="mdi:email"></span></span>
+                    </div>
+                    <input type="email" class="form-control" placeholder="Email" required oninput="validateInput(this)">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><span class="iconify" data-icon="mdi:lock"></span></span>
+                    </div>
+                    <input type="password" class="form-control" placeholder="Password" required oninput="validatePasswordMatch()" id="password-input">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><span class="iconify" data-icon="mdi:lock"></span></span>
+                    </div>
+                    <input type="password" class="form-control" placeholder="Confirm Password" required oninput="validatePasswordMatch()">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block btn-submit" id="submit-btn">
+                <span class="iconify btn-icon" data-icon="mdi:account-plus"></span> Create Account
+            </button>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('password-input').value = '';
+    });
+
+    function showLoadingIcon() {
+        document.getElementById('submit-btn').innerHTML = '<span class="iconify btn-icon" data-icon="mdi:loading"></span> Creating Account...';
+        setTimeout(function() {
+            document.querySelectorAll('.input-group').forEach(function(inputGroup) {
+                inputGroup.classList.remove('success');
+                inputGroup.classList.remove('error');
+            });
+            document.querySelectorAll('input').forEach(function(input) {
+                input.value = '';
+            });
+            document.querySelectorAll('input[type="password"]').forEach(function(input) {
+                input.classList.remove('success');
+                input.classList.remove('error');
+            });
+            document.getElementById('submit-btn').innerHTML = '<span class="iconify btn-icon" data-icon="mdi:account-plus"></span> Create Account';
+        }, 2000);
+    }
+
+    function validateInput(input) {
+        const value = input.value.trim();
+        const parentInputGroup = input.closest('.input-group');
+
+        if (value === '') {
+            parentInputGroup.classList.remove('success');
+            parentInputGroup.classList.remove('error');
+            return;
+        }
+
+        switch (input.type) {
+            case 'email':
+                const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+                updateIconState(parentInputGroup, isValidEmail);
+                break;
+            default:
+                updateIconState(parentInputGroup, true);
+                break;
+        }
+    }
+
+    function validatePasswordMatch() {
+        const password = document.querySelector('input[type="password"][placeholder="Password"]').value.trim();
+        const confirmPassword = document.querySelector('input[type="password"][placeholder="Confirm Password"]').value.trim();
+        const parentInputGroupPassword = document.querySelector('input[type="password"][placeholder="Password"]').closest('.input-group');
+        const parentInputGroupConfirmPassword = document.querySelector('input[type="password"][placeholder="Confirm Password"]').closest('.input-group');
+        const passwordsMatch = password === confirmPassword && password !== '' && confirmPassword !== '';
+        updateIconState(parentInputGroupPassword, passwordsMatch);
+        updateIconState(parentInputGroupConfirmPassword, passwordsMatch);
+    }
+
+    function updateIconState(parentInputGroup, isValid) {
+        if (isValid) {
+            parentInputGroup.classList.remove('error');
+            parentInputGroup.classList.add('success');
+        } else {
+            parentInputGroup.classList.remove('success');
+            parentInputGroup.classList.add('error');
+        }
+    }
+</script>
+
+</body>
+</html>

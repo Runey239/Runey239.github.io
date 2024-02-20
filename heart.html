@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beating Heart</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@iconify/iconify@3.0.0-beta.11/dist/iconify.min.css">
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #121212; /* Dark mode background color */
+    color: #fff; /* Dark mode text color */
+  }
+  
+  .heart {
+    font-size: 10em; /* Adjust size as needed */
+    animation: heartbeat 1s infinite alternate;
+  }
+
+  @keyframes heartbeat {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.2);
+    }
+  }
+</style>
+</head>
+<body>
+<span class="iconify heart" data-icon="emojione:red-heart" data-inline="false"></span> <!-- Heart icon from Iconify -->
+<script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+</body>
+</html>
